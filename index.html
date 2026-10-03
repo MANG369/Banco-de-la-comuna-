@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco de Economía Comunal - Comuna Socialista La Paz</title>
+  <style>
+    :root {
+      --primary-red: #cf142b;
+      --accent-gold: #ffcc00;
+      --dark-bg: #121212;
+      --card-bg: #1e1e1e;
+      --text-light: #f4f4f4;
+      --text-muted: #b0b0b0;
+      --tron-red: #ff0033;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* BANNER CON FONDO DE LA BANDERA DE VENEZUELA */
+    header {
+      position: relative;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.55) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        #ffcc00 0%, #ffcc00 33.3%,
+        #00247d 33.3%, #00247d 66.6%,
+        #cf142b 66.6%, #cf142b 100%
+      );
+      background-size: cover;
+      background-position: center;
+      padding: 2.5rem 1.5rem;
+      border-bottom: 4px solid var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* AROS DORADOS BRILLANTES PARA LOS EMBLEMAS */
+    .gold-ring-frame {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 5px solid #ffd700;
+      box-shadow: 
+        0 0 0 3px #b8860b,
+        0 0 18px rgba(255, 215, 0, 0.9),
+        inset 0 0 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gold-ring-frame:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 0 4px #ffd700,
+        0 0 25px rgba(255, 223, 0, 1),
+        inset 0 0 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .gold-ring-frame img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header-content {
+      flex: 1;
+      text-align: center;
+      min-width: 280px;
+    }
+
+    .header-title h1 {
+      font-size: 2.2rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.9);
+    }
+
+    .header-title h2 {
+      font-size: 1.2rem;
+      color: var(--accent-gold);
+      margin-top: 5px;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.9);
+      font-weight: 600;
+    }
+
+    .gaceta-links {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-gaceta {
+      background-color: var(--accent-gold);
+      color: #000;
+      padding: 9px 18px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .btn-gaceta:hover {
+      background-color: #fff;
+      box-shadow: 0 0 12px rgba(255, 204, 0, 0.9);
+      transform: translateY(-2px);
+    }
+
+    nav {
+      background-color: #000;
+      padding: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #333;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+      border-left: 5px solid var(--primary-red);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    h2.section-title {
+      color: var(--accent-gold);
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+    }
+
+    .grid-objectives {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .obj-item {
+      background: #252525;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+
+    .crypto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .crypto-card {
+      background: linear-gradient(145deg, #1f1f1f, #282828);
+      border: 1px solid var(--accent-gold);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .crypto-card h3 {
+      color: var(--tron-red);
+      margin-bottom: 10px;
+    }
+
+    .token-type {
+      background-color: var(--accent-gold);
+      color: #000;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    .tronscan-info {
+      background-color: #1a232a;
+      border: 1px solid #00d2ff;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+
+    .legal-articles {
+      background: #222;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 15px;
+      border-left: 3px solid var(--accent-gold);
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .contact-item {
+      background-color: #252525;
+      padding: 12px;
+      border-radius: 6px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .social-links a {
+      background-color: var(--primary-red);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .social-links a:hover {
+      background-color: var(--accent-gold);
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: var(--text-muted);
+      border-top: 2px solid var(--primary-red);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- LOGO DE LA COMUNA DENTRO DE ARO DORADO BRILLANTE -->
+    <div class="gold-ring-frame">
+      <img src="comuna_paz_3.png" alt="Logo Comuna La Paz">
+    </div>
+
+    <!-- TÍTULO Y ENLACES DE GACETA -->
+    <div class="header-content">
+      <div class="header-title">
+        <h1>COMUNA SOCIALISTA LA PAZ</h1>
+        <h2>Banco de Economía Comunal — Estado Comunal ABYA YALA</h2>
+      </div>
+      <div class="gaceta-links">
+        <a href="https://anc-ecay.godaddysites.com/gaceta-oficial-ecay" target="_blank" class="btn-gaceta">📜 Gaceta Oficial ECAY</a>
+        <a href="https://comuna-la-paz.webnode.com.ve/cartelera-info/p-yzmdu4na/1/" target="_blank" class="btn-gaceta">📜 Gaceta Banco de la Comuna</a>
+      </div>
+    </div>
+
+    <!-- ESCUDO DE VENEZUELA DENTRO DE ARO DORADO BRILLANTE -->
+    <div class="gold-ring-frame">
+      <img src="ESCUDO DE VENEZUELA.jpg" alt="Escudo de Venezuela">
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#objetivos">Objetivos</a></li>
+      <li><a href="#que-es">¿Qué es la Comuna?</a></li>
+      <li><a href="#historia">Historia Comunal</a></li>
+      <li><a href="#cripto">Valores Criptográficos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <section id="objetivos">
+      <h2 class="section-title">Nuestros Objetivos</h2>
+      <div class="grid-objectives">
+        <div class="obj-item">
+          <p>Impulsar el fortalecimiento de la organización del pueblo, en función de consolidar la democracia protagónica revolucionaria y construir las bases de la sociedad socialista, democrática, de derecho y de justicia.</p>
+        </div>
+        <div class="obj-item">
+          <p>Fortalecer la cultura de la participación en los asuntos públicos para garantizar el ejercicio de la soberanía popular.</p>
+        </div>
+        <div class="obj-item">
+          <p>Coadyuvar con las políticas de Estado en todas sus instancias, con la finalidad de actuar coordinadamente en la ejecución del Plan de Desarrollo Económico y Social de la Nación.</p>
+        </div>
+        <div class="obj-item">
+          <p>Profundizar la corresponsabilidad, la autogestión y la cogestión en el modelo económico comunal.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="que-es">
+      <h2 class="section-title">¿Qué es la Comuna?</h2>
+      <p>La comuna es una forma de organización social, política y económica popular de carácter local y participativo, donde los individuos desarrollan diversas instituciones de autogobierno para cubrir y regular sus fines comunes con miras a ser autosuficientes en la medida de lo posible.</p>
+      
+      <div class="legal-articles">
+        <h3>Herramientas y Función</h3>
+        <p><strong>Herramientas:</strong> La utilización del andamiaje jurídico y legal de la nación del <strong>ESTADO COMUNAL ABYA YALA</strong>, como herramienta de superación y justicia para alcanzar la supremacía Social.</p>
+        <p><strong>Función:</strong> Generar condiciones objetivas, sin discriminación de ningún tipo, para lograr el autogobierno de los nuevos modos de producción social.</p>
+      </div>
+    </section>
+
+    <section id="historia">
+      <h2 class="section-title">Historia Comunal</h2>
+      <p>En Venezuela, el presidente Hugo Chávez, dentro del marco del socialismo del siglo XXI, planteó la construcción del «Estado comunal». En 2009 se crea el Ministerio del Poder Popular para las Comunas, regidas por la Ley Orgánica de las Comunas y la Ley Orgánica del Sistema Económico Comunal.</p>
+      <br>
+      <p>En el programa de gobierno (2013-2019), se profundiza el desarrollo a través de empresas de propiedad social, unidades familiares y grupos de intercambio solidario. Las comunas cuentan con respaldo constitucional en la Constitución de la República Bolivariana de Venezuela, según los artículos N° 1, 2, 5, 70, 118, 126, 184, 333 y 350, y la Ley Orgánica del Poder Popular (Art. 8, Nral 8 y Art. 17).</p>
+    </section>
+
+    <section id="cripto">
+      <h2 class="section-title">Valores de Reserva Criptográfico</h2>
+      <div class="crypto-grid">
+        <div class="crypto-card">
+          <span class="token-type">TRC20</span>
+          <h3>YHWHcoin</h3>
+          <p>Criptoactivo soberano para la descentralización del sistema económico comunal.</p>
+        </div>
+        <div class="crypto-card">
+          <span class="token-type">TRC10</span>
+          <h3>YHWHcoin</h3>
+          <p>Token de recompensa e intercambio para el Poder Popular.</p>
+        </div>
+        <div class="crypto-card">
+          <span class="token-type">TRC20</span>
+          <h3>HashNODE MAN</h3>
+          <p>Unidad de respaldo digital para nodos de red comunal.</p>
+        </div>
+      </div>
+
+      <div class="tronscan-info">
+        <p>🌐 <strong>Explorador Tronscan:</strong> Tronscan es el explorador de bloques basado en TRON, donde puede explorar bloques, transacciones, cuentas y cualquier tipo de consulta a la cadena de TRON.</p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2 class="section-title">Contáctanos & Sede</h2>
+      <p><strong>COMUNA SOCIALISTA LA PAZ</strong></p>
+      <div class="contact-info">
+        <div class="contact-item">📍 Urbanización El Placer, Avenida Los Bucares, M3 - 7.L1</div>
+        <div class="contact-item">📍 Localidad Guanare, Territorio Portuguesa</div>
+        <div class="contact-item">📞 Banco de la Comuna La Paz: (+58) 412 558 4951</div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://mang369.github.io/yhwhcore/" target="_blank">📄 White Paper</a>
+        <a href="https://mang369.github.io/yhwhcore/" target="_blank">🌐 Web3</a>
+        <a href="https://t.me/BCLAP_bot" target="_blank">✈️ Telegram</a>
+        <a href="https://m.facebook.com/share/1F4RqgEipB/" target="_blank">📘 Facebook</a>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; Banco de Economía Comunal - Comuna Socialista La Paz | RIF: J-410244623</p>
+  </footer>
+
+</body>
+</html>
